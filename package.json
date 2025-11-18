@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.2.3",
-    "@wix/dashboard-sdk": "^0.13.10",
     "@wix/metrics": "^0.1.1",
     "@wix/sdk": "^1.0.88",
     "@wix/ui-santa-styles": "^1.1.44",
