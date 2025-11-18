@@ -11,9 +11,6 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.2.3",
-    "@wix/metrics": "^0.1.1",
-    "@wix/sdk": "^1.0.88",
-    "@wix/ui-santa-styles": "^1.1.44",
     "astro": "^5.1.2",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
