@@ -1,5 +1,5 @@
 import useResizeObserver from "@react-hook/resize-observer"
-import { useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useState, type RefObject } from "react"
 import '@/components/ui/image.css'
 
 type Size = {
@@ -7,7 +7,7 @@ type Size = {
   height: number
 }
 
-export const useSize = (ref: React.RefObject<HTMLElement>, threshold: number = 50): Size | null => {
+export const useSize = (ref: RefObject<HTMLElement>, threshold: number = 50): Size | null => {
 
   const [size, setSize] = useState<Size | null>(null)
 

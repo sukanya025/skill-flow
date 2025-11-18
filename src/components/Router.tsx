@@ -6,13 +6,6 @@ import { MemberProtectedRoute } from '@/components/ui/member-protected-route';
 
 // Import page components
 import HomePage from '@/components/pages/HomePage';
-import FreelancerDirectory from '@/components/pages/FreelancerDirectory';
-import FreelancerProfile from '@/components/pages/FreelancerProfile';
-import JobBoard from '@/components/pages/JobBoard';
-import JobDetails from '@/components/pages/JobDetails';
-import PostJob from '@/components/pages/PostJob';
-import ClientMetrics from '@/components/pages/ClientMetrics';
-import ReputationLedger from '@/components/pages/ReputationLedger';
 import ProfilePage from '@/components/pages/ProfilePage';
 
 // Layout component that includes ScrollToTop
@@ -36,38 +29,6 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "freelancers",
-        element: <FreelancerDirectory />,
-      },
-      {
-        path: "freelancer/:id",
-        element: <FreelancerProfile />,
-      },
-      {
-        path: "jobs",
-        element: <JobBoard />,
-      },
-      {
-        path: "job/:id",
-        element: <JobDetails />,
-      },
-      {
-        path: "post-job",
-        element: (
-          <MemberProtectedRoute messageToSignIn="Sign in to post a job and find qualified freelancers">
-            <PostJob />
-          </MemberProtectedRoute>
-        ),
-      },
-      {
-        path: "metrics",
-        element: <ClientMetrics />,
-      },
-      {
-        path: "reputation",
-        element: <ReputationLedger />,
-      },
-      {
         path: "profile",
         element: (
           <MemberProtectedRoute>
@@ -82,7 +43,7 @@ const router = createBrowserRouter([
     ],
   },
 ], {
-  basename: import.meta.env.BASE_NAME,
+  basename: (import.meta as any).env?.BASE_NAME,
 });
 
 export default function AppRouter() {
