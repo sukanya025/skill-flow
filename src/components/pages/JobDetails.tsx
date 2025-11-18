@@ -12,7 +12,7 @@ import { BaseCrudService, useMember } from '@/integrations';
 import { JobPostings, Proposals } from '@/entities';
 import { 
   DollarSign, Clock, MapPin, Briefcase, Calendar, 
-  Send, Star, Shield, Users, AlertCircle, Lock 
+  Send, Star, Shield, Users, AlertCircle, Lock, IndianRupee 
 } from 'lucide-react';
 
 export default function JobDetails() {
@@ -231,10 +231,10 @@ export default function JobDetails() {
                 {/* Budget and Timeline */}
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
                   <div className="flex items-center space-x-3">
-                    <DollarSign className="w-6 h-6 text-secondary" />
+                    <IndianRupee className="w-6 h-6 text-secondary" />
                     <div>
                       <div className="font-heading font-bold text-primary text-xl">
-                        ${job.budgetAmount?.toLocaleString() || '5,000'}
+                        ₹{job.budgetAmount?.toLocaleString() || '4,00,000'}
                       </div>
                       <div className="text-sm font-paragraph text-primary/60">
                         {job.paymentModel === 'hourly' ? 'Per hour' : 'Fixed price'}
@@ -368,7 +368,7 @@ We value quality work, clear communication, and reliability. If you're passionat
 
                     <div>
                       <Label htmlFor="proposedAmount">
-                        Proposed Amount ($)
+                        Proposed Amount (₹)
                       </Label>
                       <Input
                         id="proposedAmount"
@@ -487,7 +487,7 @@ We value quality work, clear communication, and reliability. If you're passionat
                     </div>
                     <div className="flex justify-between">
                       <span>Total spent</span>
-                      <span>${(Math.floor(Math.random() * 100) + 20)}K+</span>
+                      <span>₹{(Math.floor(Math.random() * 100) + 20)}L+</span>
                     </div>
                   </div>
 
@@ -545,7 +545,7 @@ We value quality work, clear communication, and reliability. If you're passionat
                       </p>
                       <div className="flex justify-between items-center">
                         <span className="text-xs font-paragraph text-secondary font-medium">
-                          ${Math.floor(Math.random() * 5000) + 1000}
+                          ₹{Math.floor(Math.random() * 400000) + 80000}
                         </span>
                         <Button size="sm" variant="outline" className="text-xs">
                           View

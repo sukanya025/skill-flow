@@ -66,14 +66,14 @@ export default function FreelancerDirectory() {
       filtered = filtered.filter(freelancer => {
         const rate = freelancer.hourlyRate || 0;
         switch (rateFilter) {
-          case 'under-25':
-            return rate < 25;
-          case '25-50':
-            return rate >= 25 && rate <= 50;
-          case '50-100':
-            return rate > 50 && rate <= 100;
-          case 'over-100':
-            return rate > 100;
+          case 'under-2000':
+            return rate < 2000;
+          case '2000-4000':
+            return rate >= 2000 && rate <= 4000;
+          case '4000-8000':
+            return rate > 4000 && rate <= 8000;
+          case 'over-8000':
+            return rate > 8000;
           default:
             return true;
         }
@@ -184,10 +184,10 @@ export default function FreelancerDirectory() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Any Rate</SelectItem>
-                <SelectItem value="under-25">Under $25/hr</SelectItem>
-                <SelectItem value="25-50">$25 - $50/hr</SelectItem>
-                <SelectItem value="50-100">$50 - $100/hr</SelectItem>
-                <SelectItem value="over-100">$100+/hr</SelectItem>
+                <SelectItem value="under-2000">Under ₹2,000/hr</SelectItem>
+                <SelectItem value="2000-4000">₹2,000 - ₹4,000/hr</SelectItem>
+                <SelectItem value="4000-8000">₹4,000 - ₹8,000/hr</SelectItem>
+                <SelectItem value="over-8000">₹8,000+/hr</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -281,7 +281,7 @@ export default function FreelancerDirectory() {
                 {/* Rate and Portfolio */}
                 <div className="flex items-center justify-between mb-4">
                   <span className="font-heading font-bold text-primary text-lg">
-                    ${freelancer.hourlyRate || 50}/hr
+                    ₹{freelancer.hourlyRate || 4000}/hr
                   </span>
                   {freelancer.portfolioUrl && (
                     <Button variant="outline" size="sm" asChild>

@@ -204,10 +204,10 @@ export default function JobBoard() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Any Budget</SelectItem>
-                <SelectItem value="under-1000">Under $1,000</SelectItem>
-                <SelectItem value="1000-5000">$1,000 - $5,000</SelectItem>
-                <SelectItem value="5000-10000">$5,000 - $10,000</SelectItem>
-                <SelectItem value="over-10000">$10,000+</SelectItem>
+                <SelectItem value="under-80000">Under ₹80,000</SelectItem>
+                <SelectItem value="80000-400000">₹80,000 - ₹4,00,000</SelectItem>
+                <SelectItem value="400000-800000">₹4,00,000 - ₹8,00,000</SelectItem>
+                <SelectItem value="over-800000">₹8,00,000+</SelectItem>
               </SelectContent>
             </Select>
 
@@ -278,7 +278,7 @@ export default function JobBoard() {
                       <div className="flex items-center space-x-2">
                         <DollarSign className="w-4 h-4 text-secondary" />
                         <span className="font-heading font-bold text-primary text-lg">
-                          ${job.budgetAmount?.toLocaleString() || '5,000'}
+                          ₹{job.budgetAmount?.toLocaleString() || '4,00,000'}
                         </span>
                         <span className="text-sm font-paragraph text-primary/60">
                           {job.paymentModel === 'hourly' ? '/hour' : 'fixed'}

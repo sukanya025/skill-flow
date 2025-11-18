@@ -175,7 +175,7 @@ export default function FreelancerProfile() {
                     {/* Hourly Rate */}
                     <div className="mb-6">
                       <span className="text-3xl font-heading font-bold text-primary">
-                        ${freelancer.hourlyRate || 50}
+                        ₹{freelancer.hourlyRate || 4000}
                       </span>
                       <span className="text-lg font-paragraph text-primary/70">/hour</span>
                     </div>

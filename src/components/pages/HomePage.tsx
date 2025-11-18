@@ -293,7 +293,7 @@ export default function HomePage() {
                       ))}
                     </div>
                     <span className="font-heading font-bold text-primary">
-                      ${freelancer.hourlyRate || 50}/hr
+                      ₹{freelancer.hourlyRate || 4000}/hr
                     </span>
                   </div>
                 </CardContent>
@@ -339,7 +339,7 @@ export default function HomePage() {
                   
                   <div className="flex items-center justify-between mb-4">
                     <span className="font-heading font-bold text-primary text-lg">
-                      ${job.budgetAmount?.toLocaleString() || '5,000'}
+                      ₹{job.budgetAmount?.toLocaleString() || '4,00,000'}
                     </span>
                     <span className="text-sm font-paragraph text-primary/60">
                       {job.isRemote ? 'Remote' : 'On-site'}

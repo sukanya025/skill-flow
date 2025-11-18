@@ -12,7 +12,7 @@ import { MemberProtectedRoute } from '@/components/ui/member-protected-route';
 import { BaseCrudService, useMember } from '@/integrations';
 import { JobPostings } from '@/entities';
 import { 
-  Plus, X, Wand2, DollarSign, Calendar, 
+  Plus, X, Wand2, IndianRupee, Calendar, 
   MapPin, Briefcase, AlertCircle, CheckCircle 
 } from 'lucide-react';
 
@@ -289,14 +289,14 @@ function PostJobContent({
 
                 <div>
                   <Label htmlFor="budgetAmount">
-                    Budget Amount ($) *
+                    Budget Amount (₹) *
                   </Label>
                   <div className="relative">
-                    <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary/60 w-4 h-4" />
+                    <IndianRupee className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary/60 w-4 h-4" />
                     <Input
                       id="budgetAmount"
                       type="number"
-                      placeholder="5000"
+                      placeholder="50000"
                       value={formData.budgetAmount}
                       onChange={(e) => handleInputChange('budgetAmount', e.target.value)}
                       className="pl-10"
