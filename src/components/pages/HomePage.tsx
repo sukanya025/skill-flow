@@ -42,7 +42,7 @@ export default function HomePage() {
         <div className="max-w-[120rem] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="text-2xl font-heading font-bold text-primary">
-              FreelanceHub
+              Skill Flow
             </Link>
             <nav className="hidden md:flex items-center space-x-8">
               <Link to="/freelancers" className="font-paragraph text-primary hover:text-secondary transition-colors">
@@ -174,7 +174,7 @@ export default function HomePage() {
         <div className="max-w-[120rem] mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-heading font-bold text-primary mb-4">
-              Why Choose FreelanceHub?
+              Why Choose Skill Flow?
             </h2>
             <p className="text-lg font-paragraph text-primary/70 max-w-2xl mx-auto">
               Experience the next generation of freelance collaboration with our innovative features
@@ -365,7 +365,7 @@ export default function HomePage() {
         <div className="max-w-[120rem] mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-heading font-bold mb-4">FreelanceHub</h3>
+              <h3 className="text-xl font-heading font-bold mb-4">Skill Flow</h3>
               <p className="font-paragraph text-primary-foreground/80 mb-4">
                 The future of verified freelance collaboration with AI-powered matching 
                 and transparent pricing.
@@ -402,7 +402,7 @@ export default function HomePage() {
           
           <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center">
             <p className="font-paragraph text-primary-foreground/60">
-              © 2024 FreelanceHub. All rights reserved.
+              © 2024 Skill Flow. All rights reserved.
             </p>
           </div>
         </div>

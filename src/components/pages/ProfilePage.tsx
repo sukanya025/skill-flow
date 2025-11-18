@@ -24,7 +24,7 @@ export default function ProfilePage() {
         <div className="max-w-[120rem] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="text-2xl font-heading font-bold text-primary">
-              FreelanceHub
+              Skill Flow
             </Link>
             <nav className="hidden md:flex items-center space-x-8">
               <Link to="/freelancers" className="font-paragraph text-primary hover:text-secondary transition-colors">
@@ -276,7 +276,7 @@ export default function ProfilePage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm font-paragraph text-primary/70 mb-4">
-                  Get support or learn more about FreelanceHub features.
+                  Get support or learn more about Skill Flow features.
                 </p>
                 <div className="space-y-2">
                   <Button variant="outline" size="sm" className="w-full justify-start">
