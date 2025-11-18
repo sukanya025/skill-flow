@@ -3,6 +3,16 @@ import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-rou
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
 
+// Import page components
+import HomePage from '@/components/pages/HomePage';
+import FreelancerDirectory from '@/components/pages/FreelancerDirectory';
+import FreelancerProfile from '@/components/pages/FreelancerProfile';
+import JobBoard from '@/components/pages/JobBoard';
+import JobDetails from '@/components/pages/JobDetails';
+import PostJob from '@/components/pages/PostJob';
+import ClientMetrics from '@/components/pages/ClientMetrics';
+import ReputationLedger from '@/components/pages/ReputationLedger';
+
 // Layout component that includes ScrollToTop
 function Layout() {
   return (
@@ -21,7 +31,35 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Wix Vibe</div>,
+        element: <HomePage />,
+      },
+      {
+        path: "freelancers",
+        element: <FreelancerDirectory />,
+      },
+      {
+        path: "freelancer/:id",
+        element: <FreelancerProfile />,
+      },
+      {
+        path: "jobs",
+        element: <JobBoard />,
+      },
+      {
+        path: "job/:id",
+        element: <JobDetails />,
+      },
+      {
+        path: "post-job",
+        element: <PostJob />,
+      },
+      {
+        path: "metrics",
+        element: <ClientMetrics />,
+      },
+      {
+        path: "reputation",
+        element: <ReputationLedger />,
       },
       {
         path: "*",
