@@ -7,18 +7,21 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { BaseCrudService } from '@/integrations';
+import { SignIn } from '@/components/ui/sign-in';
+import { BaseCrudService, useMember } from '@/integrations';
 import { JobPostings, Proposals } from '@/entities';
 import { 
   DollarSign, Clock, MapPin, Briefcase, Calendar, 
-  Send, Star, Shield, Users, AlertCircle 
+  Send, Star, Shield, Users, AlertCircle, Lock 
 } from 'lucide-react';
 
 export default function JobDetails() {
   const { id } = useParams<{ id: string }>();
+  const { member, isAuthenticated, actions } = useMember();
   const [job, setJob] = useState<JobPostings | null>(null);
   const [loading, setLoading] = useState(true);
   const [showProposalForm, setShowProposalForm] = useState(false);
+  const [showSignInPrompt, setShowSignInPrompt] = useState(false);
   const [proposalData, setProposalData] = useState({
     proposalTitle: '',
     proposalDetails: '',
@@ -45,6 +48,12 @@ export default function JobDetails() {
   }, [id]);
 
   const handleSubmitProposal = async () => {
+    // Check authentication first
+    if (!isAuthenticated) {
+      setShowSignInPrompt(true);
+      return;
+    }
+
     if (!job || !proposalData.proposalTitle || !proposalData.proposalDetails || !proposalData.proposedAmount) {
       return;
     }
@@ -80,6 +89,14 @@ export default function JobDetails() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const handleProposalButtonClick = () => {
+    if (!isAuthenticated) {
+      setShowSignInPrompt(true);
+      return;
+    }
+    setShowProposalForm(!showProposalForm);
   };
 
   const formatTimeAgo = (date: Date | string | undefined) => {
@@ -147,13 +164,24 @@ export default function JobDetails() {
                 Metrics
               </Link>
             </nav>
-            <div className="flex items-center space-x-4">
-              <Button variant="outline" asChild>
-                <Link to="/login">Sign In</Link>
-              </Button>
-              <Button asChild>
-                <Link to="/register">Get Started</Link>
-              </Button>
+            <div className="flex items-center justify-between">
+              <Link to="/jobs" className="font-paragraph text-secondary hover:text-primary transition-colors">
+                ← Back to Jobs
+              </Link>
+              <div className="flex items-center space-x-4">
+                {isAuthenticated ? (
+                  <div className="flex items-center space-x-2 text-sm font-paragraph text-primary/70">
+                    <span>Welcome, {member?.profile?.nickname || member?.contact?.firstName || 'User'}</span>
+                  </div>
+                ) : (
+                  <Button variant="outline" onClick={() => actions.login()}>
+                    Sign In
+                  </Button>
+                )}
+                <Button asChild>
+                  <Link to="/register">Get Started</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -296,7 +324,7 @@ We value quality work, clear communication, and reliability. If you're passionat
             </Card>
 
             {/* Proposal Form */}
-            {showProposalForm && (
+            {showProposalForm && isAuthenticated && (
               <Card className="bg-background border-secondary/20">
                 <CardHeader>
                   <CardTitle>Submit Your Proposal</CardTitle>
@@ -369,6 +397,32 @@ We value quality work, clear communication, and reliability. If you're passionat
                 </CardContent>
               </Card>
             )}
+
+            {/* Sign In Prompt */}
+            {showSignInPrompt && (
+              <Card className="bg-background border-secondary/20">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Lock className="w-8 h-8 text-secondary" />
+                  </div>
+                  <h3 className="text-xl font-heading font-bold text-primary mb-2">
+                    Sign In Required
+                  </h3>
+                  <p className="font-paragraph text-primary/70 mb-6">
+                    You need to be signed in to submit a proposal for this job. 
+                    Create an account or sign in to get started.
+                  </p>
+                  <div className="flex space-x-3 justify-center">
+                    <Button onClick={() => actions.login()}>
+                      Sign In
+                    </Button>
+                    <Button variant="outline" onClick={() => setShowSignInPrompt(false)}>
+                      Cancel
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           {/* Sidebar */}
@@ -379,10 +433,11 @@ We value quality work, clear communication, and reliability. If you're passionat
                 <div className="space-y-4">
                   <Button 
                     className="w-full" 
-                    onClick={() => setShowProposalForm(!showProposalForm)}
+                    onClick={handleProposalButtonClick}
                   >
                     <Send className="w-4 h-4 mr-2" />
-                    {showProposalForm ? 'Hide Proposal Form' : 'Submit Proposal'}
+                    {!isAuthenticated ? 'Sign In to Submit Proposal' : 
+                     showProposalForm ? 'Hide Proposal Form' : 'Submit Proposal'}
                   </Button>
                   <Button variant="outline" className="w-full">
                     Save Job

@@ -2,6 +2,7 @@ import { MemberProvider } from '@/integrations';
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
+import { MemberProtectedRoute } from '@/components/ui/member-protected-route';
 
 // Import page components
 import HomePage from '@/components/pages/HomePage';
@@ -12,6 +13,7 @@ import JobDetails from '@/components/pages/JobDetails';
 import PostJob from '@/components/pages/PostJob';
 import ClientMetrics from '@/components/pages/ClientMetrics';
 import ReputationLedger from '@/components/pages/ReputationLedger';
+import ProfilePage from '@/components/pages/ProfilePage';
 
 // Layout component that includes ScrollToTop
 function Layout() {
@@ -51,7 +53,11 @@ const router = createBrowserRouter([
       },
       {
         path: "post-job",
-        element: <PostJob />,
+        element: (
+          <MemberProtectedRoute messageToSignIn="Sign in to post a job and find qualified freelancers">
+            <PostJob />
+          </MemberProtectedRoute>
+        ),
       },
       {
         path: "metrics",
@@ -60,6 +66,14 @@ const router = createBrowserRouter([
       {
         path: "reputation",
         element: <ReputationLedger />,
+      },
+      {
+        path: "profile",
+        element: (
+          <MemberProtectedRoute>
+            <ProfilePage />
+          </MemberProtectedRoute>
+        ),
       },
       {
         path: "*",

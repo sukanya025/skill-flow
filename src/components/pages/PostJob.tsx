@@ -8,7 +8,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Badge } from '@/components/ui/badge';
-import { BaseCrudService } from '@/integrations';
+import { MemberProtectedRoute } from '@/components/ui/member-protected-route';
+import { BaseCrudService, useMember } from '@/integrations';
 import { JobPostings } from '@/entities';
 import { 
   Plus, X, Wand2, DollarSign, Calendar, 
@@ -17,6 +18,7 @@ import {
 
 export default function PostJob() {
   const navigate = useNavigate();
+  const { member } = useMember(); // No need to check authentication - MemberProtectedRoute handles this
   const [formData, setFormData] = useState({
     jobTitle: '',
     jobDescription: '',
@@ -131,6 +133,48 @@ TECHNICAL REQUIREMENTS:
   };
 
   return (
+    <MemberProtectedRoute messageToSignIn="Sign in to post a job and find qualified freelancers">
+      <PostJobContent 
+        formData={formData}
+        setFormData={setFormData}
+        skillTags={skillTags}
+        setSkillTags={setSkillTags}
+        currentSkill={currentSkill}
+        setCurrentSkill={setCurrentSkill}
+        aiAssisted={aiAssisted}
+        setAiAssisted={setAiAssisted}
+        submitting={submitting}
+        handleInputChange={handleInputChange}
+        addSkill={addSkill}
+        removeSkill={removeSkill}
+        handleKeyPress={handleKeyPress}
+        generateAIRequirements={generateAIRequirements}
+        handleSubmit={handleSubmit}
+        navigate={navigate}
+      />
+    </MemberProtectedRoute>
+  );
+}
+
+function PostJobContent({
+  formData,
+  setFormData,
+  skillTags,
+  setSkillTags,
+  currentSkill,
+  setCurrentSkill,
+  aiAssisted,
+  setAiAssisted,
+  submitting,
+  handleInputChange,
+  addSkill,
+  removeSkill,
+  handleKeyPress,
+  generateAIRequirements,
+  handleSubmit,
+  navigate
+}: any) {
+  return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="w-full border-b border-secondary/20 bg-background/95 backdrop-blur-sm sticky top-0 z-50">
@@ -155,10 +199,10 @@ TECHNICAL REQUIREMENTS:
             </nav>
             <div className="flex items-center space-x-4">
               <Button variant="outline" asChild>
-                <Link to="/login">Sign In</Link>
+                <Link to="/profile">Profile</Link>
               </Button>
-              <Button asChild>
-                <Link to="/register">Get Started</Link>
+              <Button variant="outline">
+                Sign Out
               </Button>
             </div>
           </div>

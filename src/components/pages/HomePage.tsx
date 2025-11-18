@@ -4,11 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Image } from '@/components/ui/image';
-import { BaseCrudService } from '@/integrations';
+import { BaseCrudService, useMember } from '@/integrations';
 import { Freelancers, JobPostings } from '@/entities';
-import { Search, Star, Shield, Zap, Users, TrendingUp, CheckCircle } from 'lucide-react';
+import { Search, Star, Shield, Zap, Users, TrendingUp, CheckCircle, LogOut } from 'lucide-react';
 
 export default function HomePage() {
+  const { member, isAuthenticated, actions } = useMember();
   const [featuredFreelancers, setFeaturedFreelancers] = useState<Freelancers[]>([]);
   const [recentJobs, setRecentJobs] = useState<JobPostings[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -58,12 +59,26 @@ export default function HomePage() {
               </Link>
             </nav>
             <div className="flex items-center space-x-4">
-              <Button variant="outline" asChild>
-                <Link to="/login">Sign In</Link>
-              </Button>
-              <Button asChild>
-                <Link to="/register">Get Started</Link>
-              </Button>
+              {isAuthenticated ? (
+                <>
+                  <Link to="/profile" className="font-paragraph text-primary hover:text-secondary transition-colors">
+                    {member?.profile?.nickname || member?.contact?.firstName || 'Profile'}
+                  </Link>
+                  <Button variant="outline" onClick={() => actions.logout()}>
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button variant="outline" onClick={() => actions.login()}>
+                    Sign In
+                  </Button>
+                  <Button onClick={() => actions.login()}>
+                    Get Started
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </div>
