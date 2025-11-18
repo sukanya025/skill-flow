@@ -67,6 +67,7 @@ const WixImage = forwardRef<HTMLImageElement, WixImageProps>(
 
     if (!size) {
       const { uri, ...placeholder } = getPlaceholder(fittingType ?? 'fit', data, { htmlTag: 'img' })
+      // @ts-expect-error placeholder.css.img properties are not typed correctly.
       return <img ref={ref} src={`${STATIC_MEDIA_URL}${uri}`} style={placeholder.css.img} {...placeholder.attr}  {...imgProps} />
     }
 
