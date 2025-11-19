@@ -58,7 +58,7 @@ const items = {
   }
 };
 
-import { WixDataItem } from "../index";
+
 
 /**
  * Generic CRUD Service class for Wix Data collections
